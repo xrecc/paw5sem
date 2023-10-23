@@ -17,26 +17,26 @@ public class KredytBB {
 	@Inject
 	FacesContext ctx;
 
-	public String getkwota() {
+	public String getKwota() {
 		return kwota;
 	}
 
-	public void setkwota(String kwota) {
+	public void setKwota(String kwota) {
 		this.kwota = kwota;
 	}
 
-	public String getczas() {
+	public String getCzas() {
 		return czas;
 	}
 
-	public void setczas(String czas) {
+	public void setCzas(String czas) {
 		this.czas = czas;
 	}
-	public String getprocent() {
+	public String getProcent() {
 		return procent;
 	}
 
-	public void setprocent(String procent) {
+	public void setProcent(String procent) {
 		this.procent = procent;
 	}
 
