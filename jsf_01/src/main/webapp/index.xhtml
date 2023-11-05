@@ -23,13 +23,9 @@
 					<p:outputLabel for="idprocent" value="procent:" />
 					<p:inputText id="idprocent" value="#{kredytBB.procent}" />
 					<p:commandButton value="Oblicz" action="#{kredytBB.calc()}" update="msg" />
-		<h:commandButton value="Oblicz ratę (AJAX)" action="#{kredytBB.calc_AJAX()}">
-			<f:ajax execute="@form" render="msg" />
-		</h:commandButton>
-		<br />
-		<p:commandLink value="Informacje" action="#{kredytBB.info()}" />
-		</h:panelGrid>
-			</h:form>	
+			</h:panelGrid>
+				<p:commandLink value="Informacje" action="#{kredytBB.info()}" />
+			</h:form>
 
 		</p:panel>
 
