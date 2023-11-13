@@ -9,12 +9,12 @@
 <ui:composition template="/templates/main-template.xhtml">
 
 	<ui:define name="title">
-		Kalkulator kredytowy
+		#{txtMain.projectName} - #{txtMain.projectTopics}
 	</ui:define>
 
 	<ui:define name="content">
 
-		<p:panel header="Zawartość" styleClass="bottom-space">Oblicz ratę</p:panel>
+		<div class="bottom-space">${txtMain.sampleText}</div>
 
 		<ui:insert name="pageContent"></ui:insert>
 

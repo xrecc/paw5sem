@@ -1,42 +1,57 @@
 package com.jsfcourse.calc;
 
-import jakarta.enterprise.context.RequestScoped;
+import java.io.Serializable;
+import java.util.ResourceBundle;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.annotation.ManagedProperty;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
-@RequestScoped
-public class KredytBB {
-	private String kwota;
-	private String czas;
-	private String procent;
+@ViewScoped
+public class KredytBB implements Serializable {
+	private Double kwota;
+	private Double czas;
+	private Double procent;
 	private Double result;
+	
+	// Resource injected
+	@Inject
+	@ManagedProperty("#{txtCalcErr}")
+	private ResourceBundle txtCalcErr;
+
+	// Resource injected
+	@Inject
+	@ManagedProperty("#{txtCalc}")
+	private ResourceBundle txtCalc;
 
 	@Inject
 	FacesContext ctx;
 
-	public String getKwota() {
+	public Double getKwota() {
 		return kwota;
 	}
 
-	public void setKwota(String kwota) {
+	public void setKwota(Double kwota) {
 		this.kwota = kwota;
 	}
 
-	public String getCzas() {
+	public Double getCzas() {
 		return czas;
 	}
 
-	public void setCzas(String czas) {
+	public void setCzas(Double czas) {
 		this.czas = czas;
 	}
-	public String getProcent() {
+	public Double getProcent() {
 		return procent;
 	}
 
-	public void setProcent(String procent) {
+	public void setProcent(Double procent) {
 		this.procent = procent;
 	}
 
@@ -49,22 +64,15 @@ public class KredytBB {
 	}
 
 	public String calc() {
-		try {
-			double kwota = Double.parseDouble(this.kwota);
-			double czas = Double.parseDouble(this.czas);
-			double procent = Double.parseDouble(this.procent);
 			result = (double) Math.round(((kwota/(czas*12))+(kwota/(czas*12))*(procent/100))*100)/100;
 
-			 ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
-	            return "showresult"; 
-	        } catch (Exception e) {
-	            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd podczas przetwarzania parametrów", null));
-	            return null; 
-	        }
+			ctx.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, txtCalcErr.getString("calcComputationOkInfo"), null));
+			ctx.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN, txtCalc.getString("result") + ": " + result + "zł", null));
+
+			return null;
 
 	    }
 
-	    public String info() {
-	        return "info"; 
-	    }
 	}
