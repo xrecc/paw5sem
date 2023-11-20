@@ -10,12 +10,15 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 @Named
 @ViewScoped
 public class KredytBB implements Serializable {
 	private Double kwota;
 	private Double czas;
+	@Min(0) @Max(50)
 	private Double procent;
 	private Double result;
 	
