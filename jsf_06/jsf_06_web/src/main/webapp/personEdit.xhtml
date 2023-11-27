@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+    <f:viewAction action="#{personEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>Kalkulator kredytowy</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{personEditBB.person != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="p-name" value="nazwa:" />
+				<p:inputText id="p-name" value="#{personEditBB.person.name}"
+					required="true" requiredMessage="Podaj nazwe"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-name" display="icon"/>
+
+				<h:outputLabel for="p-amount" value="kwota:" />
+				<p:inputText id="p-amount" value="#{personEditBB.person.amount}"
+					required="true" requiredMessage="podaj kwote"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-amount" display="icon"/>
+
+				<h:outputLabel for="p-time" value="czas:" />
+				<p:inputText id="p-time" value="#{personEditBB.person.time}"
+					required="true" requiredMessage="podaj czas"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-time" display="icon"/>
+				
+				<h:outputLabel for="p-percent" value="procent:" />
+				<p:inputText id="p-percent" value="#{personEditBB.person.percent}"
+					required="true" requiredMessage="podaj wynik"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-percent" display="icon"/>			
+				
+			</h:panelGrid>
+
+			<p:messages id="msgs" />			
+			<p:commandButton value="Zapisz" action="#{personEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="personList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>
